@@ -1,9 +1,13 @@
+const konvertbuttonstatus = document.querySelector(".kb");
+konvertbuttonstatus.disabled = true;
+
 const input = document.getElementById("fotoinput");
 
 input.addEventListener("change", () => {
   const name = input.files[0].name;
   document.getElementById("label").textContent = name + " ausgewählt";
-});
+  document.getElementById("convert").textContent = "Konvertieren";
+  konvertbuttonstatus.disabled = false;});
 
 // Hier speichern wir später das Bild
 let imageData = null;

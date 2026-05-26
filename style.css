@@ -3,44 +3,69 @@
   border-radius: 50px;
   cursor: pointer;
   border: 0;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.717);
   box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   font-size: 15px;
   transition: all 0.5s ease;
-  margin-top: 20px;
+  margin-bottom: 20px;
+  
 }
 
-.buttons:hover {
+.buttons:not(:disabled):hover {
   letter-spacing: 3px;
   background-color: rgb(15, 79, 227);
   color: hsl(0, 0%, 100%);
   box-shadow: rgb(49, 93, 197) 0px 7px 29px 0px;
 }
 
-.buttons:active {
+.buttons:not(:disabled):active {
   letter-spacing: 3px;
   background-color: rgb(15, 79, 227);
   color: hsl(0, 0%, 100%);
-  box-shadow: rgb(49, 93, 197) 0px 0px 0px 0px;
+  box-shadow: rgb(49, 93, 197) 0px 7px 29px 0px;
   transform: translateY(10px);
   transition: 100ms;
 }
 
-  body {
-background: linear-gradient(90deg, rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 1) 50%, rgba(237, 221, 83, 1) 100%);
+.buttons:disabled:hover {
+  cursor: not-allowed;
+  animation: shake 0.3s ease-in-out;
+  box-shadow: rgb(243, 57, 57) 0px 7px 29px 2px; /* X Y Blur Spread(größe) */
+}
+
+body {
+  min-height: 100dvh;
+  margin: 0;
+  background: linear-gradient(90deg, rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 1) 50%, rgba(237, 221, 83, 1) 100%);
   }
 
 .container {
 margin: 0;
-
-  display: flex;
-  flex-direction: column;
-
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+height: 100vh;
 }
 
+.qb {
+  position: fixed;   /* Lööst den Button komplett vom Container und heftet ihn an den Bildschirm */
+  bottom: 20px;      /* Abstand zum untersten sichtbaren Rand (über mobilen Leisten) */       /* Abstand zum linken Rand */
+  margin: 0;         /* Löscht alle alten, störenden Abstände */
+  z-index: 10; 
+}
 
+a {
+  color: black;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-5px); }
+  40% { transform: translateX(5px); }
+  60% { transform: translateX(-5px); }
+  80% { transform: translateX(5px); }
+  100% { transform: translateX(0); }
+}
