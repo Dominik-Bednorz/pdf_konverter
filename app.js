@@ -9,60 +9,50 @@ input.addEventListener("change", () => {
   document.getElementById("convert").textContent = "Konvertieren";
   konvertbuttonstatus.disabled = false;});
 
-// Hier speichern wir später das Bild
 let imageData = null;
 
-
-// HTML Element holen
+// Input holen
 const fileInput = document.getElementById("fotoinput");
 
+// Bild laden
+fileInput.addEventListener("change", (event) => {
 
-// Reagiert wenn User Datei auswählt
-fileInput.addEventListener("change", function(event) {
-
-  // Erste Datei holen
   const file = event.target.files[0];
-
-  // FileReader erstellen
   const reader = new FileReader();
 
-  // Läuft wenn Datei fertig gelesen wurde
-  reader.onload = function(loadEvent) {
-
-    // Bilddaten speichern
-    imageData = loadEvent.target.result;
-
+  reader.onload = (e) => {
+    imageData = e.target.result;
     console.log("Bild geladen!");
   };
 
-  // Datei als Bilddaten lesen
   reader.readAsDataURL(file);
 });
 
 
-
-// Button holen
+// Button
 const pdfButton = document.getElementById("convert");
 
+pdfButton.addEventListener("click", () => {
 
-// Reagiert auf Klick
-pdfButton.addEventListener("click", function() {
+  const img = new Image();
+  img.src = imageData;
 
-  // Prüfen ob Bild existiert
-  if (!imageData) {
-    alert("Bitte zuerst ein Bild auswählen!");
-    return;
-  }
+  img.onload = () => {
 
-  // jsPDF aus der Library holen
-  const { jsPDF } = window.jspdf;
+    const { jsPDF } = window.jspdf;
 
-  // Neues PDF erstellen
-  const pdf = new jsPDF();
+    const pdf = new jsPDF({
+      unit: "px",
+      format: [img.width, img.height]
+    });
 
-  // Bild einfügen
-  pdf.addImage(imageData, "JPEG", 10, 10, 180, 160);
+    pdf.addImage(
+      imageData,
+      "JPEG", 0, 0, img.width, img.height
+    );
 
-  // PDF speichern
-  pdf.save("meinBild.pdf");
+    pdf.save("bild.pdf");
+
+    document.getElementById("convert").textContent = "Erneut konvertieren";
+  };
 });
