@@ -71,12 +71,12 @@ pdfButton.addEventListener("click", () => {
 
     const pdf = new jsPDF({
       unit: "px",
+      orientation: img.width > img.height ? "landscape" : "portrait",
       format: [img.width, img.height]
     });
 
     pdf.addImage(
       imageData,
-      orientation: img.width > img.height ? "landscape" : "portrait",
       "JPEG", 0, 0, img.width, img.height
     );
 
