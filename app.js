@@ -76,6 +76,7 @@ pdfButton.addEventListener("click", () => {
 
     pdf.addImage(
       imageData,
+      orientation: img.width > img.height ? "landscape" : "portrait",
       "JPEG", 0, 0, img.width, img.height
     );
 
