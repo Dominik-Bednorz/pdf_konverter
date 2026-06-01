@@ -8,13 +8,28 @@
 </head>
 <body>
 
-<div class="container">
+<div class="container" id="main">
     <h1>Bild in PDF konvertieren</h1>
     <input type="file" id="fotoinput" accept="image/png, image/jpeg," hidden>
     <label class="buttons" for="fotoinput" id="label">Wähle eine Datei</label>
-    <button class="buttons kb" id="convert">Keine Datei ausgewählt</button>
-    <button class="buttons qb" onclick="window.open('quellen.html', '_self')">Quellen</button>
+    <button class="buttons" id="convert">Keine Datei ausgewählt</button>
+    <button class="buttons qb" id="quellen-button">Quellen</button>
 </div>
+
+<div class="container" id="quellen" style="display: none;">
+    <h1>Quellen</h1>
+     <ul class="font">
+            <li><a href="https://uiverse.io/" target="_blank">Uiverse.io</a></li>
+            <li><a href="https://github.com/parallax/jsPDF/blob/master/dist/jspdf.umd.min.js" target="_blank">jsPDF</a></li>
+            <li>Chat GPT und Gemini Resourcensuche; JS-coding inkl. Erklärungen</li>
+            </li>
+            <li><a href="https://developer.mozilla.org/de/docs/Web/CSS/Reference/Properties/box-shadow" target="_blank">developer.mozilla.org</a></li>
+            <li><a href="https://www.mediaevent.de/css/gradient.html" target="_blank">Hintergrund</a></li>
+        </ul>
+        <p><a href="https://uiverse.io/alexruix/fluffy-starfish-52" target="_blank">Notiz für eine geile Animation (hmode)</a></p>
+        <button class="buttons" id="quellen-zurueck-button">Zurück</button>
+</div>
+
 
 <script src="app.js"></script>
 <script src="jspdf.umd.min.js"></script>
