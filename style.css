@@ -55,6 +55,7 @@ body {
   );
 
   animation: rotateGradient 25s linear infinite;
+  font-family: Dejavu Sans Mono, monospace;
 }
 
 .container {
@@ -136,4 +137,44 @@ a {
 .glow_green {
   animation: Grünschatten_an 0.2s ease forwards;
   animation: Grünschatten 1s ease-in-out infinite;
+}
+
+.hackingModelogon {
+  background:rgba(0, 0, 0, 0.5);
+  color:#eafff3;
+  text-shadow:
+    0 0 4px rgba(0,255,120,0.35),
+    0 0 10px rgba(0,255,120,0.15);
+}
+
+.hackingModelogon .buttons {
+ margin-top: 20px;
+ margin-bottom: 0;
+ 
+}
+
+/*Hacking Mode CSS*/
+.hackingModeinput {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(0,255,120,0.6);
+
+    padding: 12px 16px;
+    border-radius: 12px;
+
+    outline: none;
+
+    transition: 0.2s;
+    font-family: monospace;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+}
+
+.hackingModeinput:focus{
+    border: 1px solid rgba(0,255,120,0.6);
+    box-shadow: 0 0 10px rgba(0,255,120,0.25);
+}
+
+.hackingModeinput::placeholder{
+    color: rgba(0,255,120,0.6);
 }

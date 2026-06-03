@@ -17,51 +17,101 @@ const codeHackingMode = [
   "n",
   "enter",
 ];
-
+let esc_holdtime_zähler = null;
 let inputTastatur = [];
+
+//--Hacking Mode an--//
 document.addEventListener("keydown", (event) => {
   inputTastatur.push(event.key.toLowerCase());
 
   input = inputTastatur.slice(-codeHackingMode.length);
   if (JSON.stringify(input) === JSON.stringify(codeHackingMode)) {
-    console.log("Konsami Code aktiviert!");
     hackingMode = !hackingMode;
     localStorage.setItem("hackingMode", hackingMode);
+    setTimeout(() => {
     hackingModechange();
-  }
+    }, 100); //Enter wird sofort ausgelöst und schickt Sachen zum Server//
+}
 });
 
-//--Hacking Mode--//
+//--Hacking Mode Log in an--//
 document.addEventListener("keydown", (event) => {
   if (event.key === "h" ) {
-  hackingMode = true;
-  localStorage.setItem("hackingMode", true);
-  hackingModechange();
-  }
-  if (event.key === "n") {
-  hackingMode = false;
-  localStorage.setItem("hackingMode", false);
+  hackingMode = !hackingMode;
+  localStorage.setItem("hackingMode", hackingMode);
   hackingModechange();
   }
 });
 
+//--Hacking Mode Log in aus--//
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && hackingMode) { //esc soll nur im Login "main" zeigen können//
+    setTimeout(() => {
+      if(event.key === "Escape") {
+      hackingMode = false;
+      localStorage.setItem("hackingMode", hackingMode);
+      hackingModechange();
+      }
+    }, 1000);
+  }
 
+  
+});
+
+
+//--Hacking Mode Log in an/aus Funktion--//
 function hackingModechange() {
   if (hackingMode || localStorage.getItem("hackingMode") === "true") {
-    document.body.style.background = "black";
-    document.body.style.color = "lime";
-    document.body.style.fontFamily = "Courier New, monospace";
-    document.body.style.textShadow = "0 0 5px lime, 0 0 10px lime, 0 0 20px lime";
+    document.getElementById("body").classList.add("hackingModelogon");
+    document.getElementById("main").style.display = "none";
+    document.getElementById("quellen").style.display = "none";
+    document.getElementById("HackingLogOn").style.display = "";
   }
   else {
-    document.body.style.background = "";
-    document.body.style.color = "";
-    document.body.style.fontFamily = "";
-    document.body.style.textShadow = "";
+    document.getElementById("body").classList.remove("hackingModelogon");
+    document.getElementById("main").style.display = "";
+    document.getElementById("HackingLogOn").style.display = "none";
   }
 }
 
-addEventListener("DOMContentLoaded", () => {
+//--Hacking Mode Login--//
+document.getElementById("login-button").addEventListener("click", () => {
+  connect_to_backend();
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Enter" && hackingMode) {
+    connect_to_backend();
+  }
+});
+
+function connect_to_backend() {
+  console.log("Verbinde...");
+  let inputedCode = document.getElementById("passwordInput");
+  fetch("https://pdf-konverter-backend.onrender.com/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+
+    body: JSON.stringify({
+      inputedCode: inputedCode.value
+    }),
+  })
+
+.then(res => res.json())
+.then(data => {
+  if (data.success) {
+    console.log("Login erfolgreich!");
+  }
+  else {
+    console.log("Login fehlgeschlagen!");
+  }
+});
+};
+
+//--Auto an--//
+addEventListener("DOMContentLoaded", () => { //auto an am Beginn//
   hackingModechange();
 });
 
@@ -129,9 +179,9 @@ pdfButton.addEventListener("click", () => {
   };
 });
 
-// Quellen anzeigen
+// Quellen anzeigen//
 document.getElementById("quellen-button").addEventListener("click", () => {
-  document.getElementById("main").style.display = "none";
+  document.getElementById("main").style.display = "none", "important";
   document.getElementById("quellen").style.display = "";
 });
 
