@@ -10,8 +10,12 @@
 
 <div class="container" id="body">
 
+    <div class="container_hackingInhalt" id="hackingInhalt">
+        <h1>Hacking Mode aktiviert</h1>
+    </div>
+
     <div class="container" id="main">
-        <h1 class="font">Bild in PDF konvertieren</h1>
+        <h1>Bild in PDF konvertieren</h1>
         <input type="file" id="fotoinput" accept="image/png, image/jpeg," hidden>
         <label class="buttons" for="fotoinput" id="label">Wähle eine Datei</label>
         <button class="buttons" id="convert">Keine Datei ausgewählt</button>
@@ -22,13 +26,14 @@
     <h1>Admin Login</h1>
     <p>Gib das Passwort ein:</p>
     <input placeholder="Passwort" type="password" id="passwordInput" class="hackingModeinput">
-    <button class="buttons" id="login-button">Login</button>
+    <button class="buttons" id="login-button"
+    >Login</button>
     <p>(Halte ESC gedrückt um abzubrechen)</p>
     </div>
 
-    <div class="container font" id="quellen" style="display: none;">
+    <div class="container" id="quellen" style="display: none;">
         <h1>Quellen</h1>
-        <ul class="font">
+        <ul>
                 <li><a href="https://uiverse.io/" target="_blank">Uiverse.io</a></li>
                 <li><a href="https://github.com/parallax/jsPDF/blob/master/dist/jspdf.umd.min.js" target="_blank">jsPDF</a></li>
                 <li>Chat GPT und Gemini Resourcensuche; JS-coding inkl. Erklärungen</li>
@@ -36,7 +41,6 @@
                 <li><a href="https://developer.mozilla.org/de/docs/Web/CSS/Reference/Properties/box-shadow" target="_blank">developer.mozilla.org</a></li>
                 <li><a href="https://www.mediaevent.de/css/gradient.html" target="_blank">Hintergrund</a></li>
             </ul>
-            <p><a href="https://uiverse.io/alexruix/fluffy-starfish-52" target="_blank">Notiz für eine geile Animation (hmode)</a></p>
             <button class="buttons" id="quellen-zurueck-button">Zurück</button>
     </div>
 

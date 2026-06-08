@@ -41,6 +41,10 @@
 }
 /*rot musst angepasst werden, damit es zum Hintergrund passt*/
 
+.hacking_button:hover {
+  background-color: rgba(0, 255, 120, 0.45) !important;
+}
+
 body {
   margin: 0;
   min-height: 100dvh;
@@ -56,6 +60,7 @@ body {
 
   animation: rotateGradient 25s linear infinite;
   font-family: Dejavu Sans Mono, monospace;
+  position: relative;
 }
 
 .container {
@@ -67,6 +72,127 @@ align-items: center;
 height: 100vh;
 }
 
+.container_hackingInhalt {
+position: absolute;
+margin: 0;
+margin-bottom: auto;
+display: flex;
+flex-direction: column;
+align-items: center;
+height: 100vh;
+color:#eafff3;
+  text-shadow:
+    0 0 4px rgba(0,255,120,0.35),
+    0 0 10px rgba(0,255,120,0.15);
+}
+
+/*Die Animation für das Laden*/
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin: 0;
+    background: rgba(0, 0, 0, 0.6);
+  }
+
+  .loader {
+  --cell-size: 52px;
+  --cell-spacing: 1px;
+  --cells: 3;
+  --total-size: calc(var(--cells) * (var(--cell-size) + 2 * var(--cell-spacing)));
+  display: flex;
+  flex-wrap: wrap;
+  width: var(--total-size);
+  height: var(--total-size);
+}
+
+.cell {
+  flex: 0 0 var(--cell-size);
+  margin: var(--cell-spacing);
+  background-color: transparent;
+  box-sizing: border-box;
+  border-radius: 4px;
+  animation: 1.5s ripple ease infinite;
+}
+
+.cell.d-1 {
+  animation-delay: 100ms;
+}
+
+.cell.d-2 {
+  animation-delay: 200ms;
+}
+
+.cell.d-3 {
+  animation-delay: 300ms;
+}
+
+.cell.d-4 {
+  animation-delay: 400ms;
+}
+
+.cell:nth-child(1) {
+  --cell-color: #00FF87;
+}
+
+.cell:nth-child(2) {
+  --cell-color: #0CFD95;
+}
+
+.cell:nth-child(3) {
+  --cell-color: #17FBA2;
+}
+
+.cell:nth-child(4) {
+  --cell-color: #23F9B2;
+}
+
+.cell:nth-child(5) {
+  --cell-color: #30F7C3;
+}
+
+.cell:nth-child(6) {
+  --cell-color: #3DF5D4;
+}
+
+.cell:nth-child(7) {
+  --cell-color: #45F4DE;
+}
+
+.cell:nth-child(8) {
+  --cell-color: #53F1F0;
+}
+
+.cell:nth-child(9) {
+  --cell-color: #60EFFF;
+}
+
+/*Animation*/
+@keyframes ripple {
+  0% {
+    background-color: transparent;
+  }
+
+  30% {
+    background-color: var(--cell-color);
+  }
+
+  60% {
+    background-color: transparent;
+  }
+
+  100% {
+    background-color: transparent;
+  }
+}
+
+
+/*Rest*/
 .qb {
   position: fixed;   /* Lööst den Button komplett vom Container und heftet ihn an den Bildschirm */
   bottom: 20px;      /* Abstand zum untersten sichtbaren Rand (über mobilen Leisten) */       /* Abstand zum linken Rand */
@@ -78,10 +204,6 @@ a {
   color: black;
 }
 
-.font {
-    font-family: Dejavu Sans Mono, monospace;
-    
-}
 
 @keyframes shake {
   0% { transform: translateX(0); }
@@ -90,6 +212,11 @@ a {
   60% { transform: translateX(-5px); }
   80% { transform: translateX(5px); }
   100% { transform: translateX(0); }
+}
+
+.rot_shake {
+  animation: shake 0.2s ease-in-out; /* vorher 0,3s*/
+  box-shadow: rgb(243, 57, 57) 0px 7px 29px 2px; /* X Y Blur Spread(größe) */
 }
 
 @property --angle {
@@ -139,6 +266,7 @@ a {
   animation: Grünschatten 1s ease-in-out infinite;
 }
 
+/*Hacking Mode CSS*/
 .hackingModelogon {
   background:rgba(0, 0, 0, 0.5);
   color:#eafff3;
@@ -150,10 +278,20 @@ a {
 .hackingModelogon .buttons {
  margin-top: 20px;
  margin-bottom: 0;
- 
+ background-color:rgba(0, 0, 0, 0.5) !important;
+ color: #eafff3 !important;
 }
 
-/*Hacking Mode CSS*/
+.hackingModelogon .buttons:hover {
+  box-shadow: rgba(0, 255, 120, 0.35) 0px 7px 29px 2px;
+  background-color:rgba(0, 0, 0, 0.5) !important;
+}
+
+.hackingModelogon .buttons:active {
+  box-shadow: rgba(0, 255, 120, 0.35) 0px 2px 6px;
+  background-color:rgba(0, 0, 0, 0.5) !important;
+}
+
 .hackingModeinput {
     background: rgba(255,255,255,0.08);
     border: 1px solid rgba(255,255,255,0.2);
