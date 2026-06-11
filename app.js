@@ -1,3 +1,12 @@
+if (window.innerWidth > 423){
+  document.getElementById("überschrift").style.display = "";
+  document.getElementById("überschrift_handy").style.display = "none";
+}
+else {
+  document.getElementById("überschrift").style.display = "none";
+  document.getElementById("überschrift_handy").style.display = "";
+};
+
 //--Variablen--
 document.getElementById("hackingInhalt").style.display = "none";
 let enter_freigegeben = false;
